@@ -51,15 +51,15 @@ namespace OfficeDocumentUpdater
                 // PowerPoint is not open
             }
 
-            if (wordApp != null && IsDocumentActive(wordApp))
+            if (wordApp != null && IsDocumentActive(wordApp) && args[1] == "Word")
             {
                 HandleWord(operation, wordApp);
             }
-            else if (excelApp != null && IsWorkbookActive(excelApp))
+            else if (excelApp != null && IsWorkbookActive(excelApp) && args[1] == "Excel")
             {
                 HandleExcel(operation, excelApp);
             }
-            else if (pptApp != null && IsPresentationActive(pptApp))
+            else if (pptApp != null && IsPresentationActive(pptApp) && args[1] == "PowerPoint")
             {
                 HandlePpt(operation, pptApp);
             }
@@ -74,6 +74,7 @@ namespace OfficeDocumentUpdater
             try
             {
                 var doc = wordApp.ActiveDocument;
+                //Console.WriteLine(doc.Name);
                 return doc != null;
             }
             catch
